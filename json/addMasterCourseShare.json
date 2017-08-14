@@ -1,0 +1,16 @@
+{
+    "success": true,
+    "msg": null,
+    "token": null,
+    "target": null,
+    "versionCode": null,
+    "body": {
+        "courseShare": {
+            "id": 48,
+            "masterCourseId": 7,
+            "userId": 26877,
+            "inuse": true,
+            "createTime": 1499673277000
+        }
+    }
+}

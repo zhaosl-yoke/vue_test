@@ -1,0 +1,90 @@
+{
+    "success": true,
+    "msg": null,
+    "token": null,
+    "target": null,
+    "versionCode": null,
+    "body": {
+        "coursePosts": [
+            {
+                "id": 19,
+                "masterCourseId": 21,
+                "title": "采访篇1",
+                "catalog": "master_course",
+                "filename": "efd9b851-0905-47cc-8ed7-7bb02b3cb4f1",
+                "extension": "mp4",
+                "thumb": "master_course/81c52551-22f8-405d-a1b3-668bb38f3f7e.jpg",
+                "duration": 721,
+                "isPrepare": 0,
+                "estimatedUpdateTime": null,
+                "questionAmount": 0,
+                "exerciseAmount": 0,
+                "createTime": 1497430281000
+            },
+            {
+                "id": 19,
+                "masterCourseId": 21,
+                "title": "采访篇2",
+                "catalog": "master_course",
+                "filename": "efd9b851-0905-47cc-8ed7-7bb02b3cb4f1",
+                "extension": "mp4",
+                "thumb": "master_course/81c52551-22f8-405d-a1b3-668bb38f3f7e.jpg",
+                "duration": 721,
+                "isPrepare": 1,
+                "estimatedUpdateTime": null,
+                "questionAmount": 0,
+                "exerciseAmount": 0,
+                "createTime": 1497430281000
+            },
+            {
+                "id": 19,
+                "masterCourseId": 21,
+                "title": "采访篇3",
+                "catalog": "master_course",
+                "filename": "efd9b851-0905-47cc-8ed7-7bb02b3cb4f1",
+                "extension": "mp4",
+                "thumb": "master_course/81c52551-22f8-405d-a1b3-668bb38f3f7e.jpg",
+                "duration": 721,
+                "isPrepare": 1,
+                "estimatedUpdateTime": null,
+                "questionAmount": 0,
+                "exerciseAmount": 0,
+                "createTime": 1497430281000
+            },
+            {
+                "id": 19,
+                "masterCourseId": 21,
+                "title": "采访篇4",
+                "catalog": "master_course",
+                "filename": "efd9b851-0905-47cc-8ed7-7bb02b3cb4f1",
+                "extension": "mp4",
+                "thumb": "master_course/81c52551-22f8-405d-a1b3-668bb38f3f7e.jpg",
+                "duration": 721,
+                "isPrepare": 1,
+                "estimatedUpdateTime": null,
+                "questionAmount": 0,
+                "exerciseAmount": 0,
+                "createTime": 1497430281000
+            }
+        ],
+        "masterCourse": {
+            "id": 21,
+            "userId": 435,
+            "majorCode": "01032",
+            "title": "零基础作曲",
+            "filepath": "master_course/c92e400a-1706-4cce-a8d1-67fe36b93108.jpg",
+            "courseNum": 3,
+            "amount": 0,
+            "updateDesc": "采访篇",
+            "isHead": 0,
+            "inuse": 1,
+            "delFlag": "0",
+            "desc1": "&ldquo;艺想国&rdquo;艺术大师美育普及课程&mdash;&mdash;《零基础作曲及如何听懂莫扎特》",
+            "updateTime": 1497437873000,
+            "createTime": 1497430052000,
+            "viewCount": 5,
+            "onlineNum": 1,
+            "masterCoursePosts": null
+        }
+    }
+}

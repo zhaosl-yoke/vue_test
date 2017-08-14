@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue练习</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="elements/index.css" />
+		<style type="text/css">
+			.fade-enter-active,.fade-leave-active {
+			  transition: opacity .5s
+			}
+			.fade-enter,.fade-leave-to
+			/* .fade-leave-active in <2.1.8 */
+			{
+			  opacity: 0
+			}
+			.active {
+				color: #f44933;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/lodash.min.js"></script>
+		<div id="app">
+			<p  v-bind:name="1">{{ message }}</p>
+			<span v-bind:title="message1">
+			    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+			</span>
+			<p v-if="seen">现在你看到我了</p>
+			<button v-on:click="show = !show">
+			    Toggle
+			</button>
+			<transition name="fade">
+			    <p v-if="show">hello</p>
+			</transition>
+			<ol>
+			    <li v-for="todo in todos">
+			      {{ todo.text }}
+			    </li>
+			</ol>
+			<div>
+			    <p>{{ message1 }}</p>
+			    <button v-on:click="reverseMessage">逆转消息</button>
+			</div>
+			
+			<!--组件-->
+			<ol>
+			    <!--
+				        现在我们为每个 todo-item 提供待办项对象
+				        待办项对象是变量，即其内容可以是动态的。
+				        我们也需要为每个组件提供一个“key”，晚些时候我们会做个解释。(写不写都无所谓)，不能当一个属性使用
+			    -->
+			    <todo-item
+			       v-for="item in groceryList"
+			       v-bind:todo="item"
+			       v-bind:key="item.id"
+			       v-bind:id="item.id">
+			    </todo-item>
+			</ol>
+			
+			<!--computed  methods-->
+		  	<p>Original message: "{{ message }}"</p>
+		  	<p>Computed reversed message: "{{ reversedMessage }}"</p>
+		  	<p>Reversed message: "{{ reverse() }}"</p>
+		  	<p>{{now}}</p>
+		  	<div>{{ fullName }}</div>
+		  	<div>{{ fullName1 }}</div>
+		  	
+		  	
+		  	<!--watch-->
+		  	<p>Ask a yes/no question:
+		    <input v-model="question">
+			</p>
+			<p>{{ answer }}</p>
+			<!--Class 与 Style 绑定-->
+			<div v-bind:class="{ active: isActive }">class</div>
+			<div class="static" v-bind:class="{ active: isActive, 'text-align': hasError }">1321</div>
+			<div v-bind:class="classObject">一个对象</div>
+			<!--请求数据-->
+			<!--<ul>
+				<li v-for="(item,key,index) in dataObject">{{index}}:{{key}}:{{item}}</li>
+			</ul>-->
+			
+			<ul>
+				<li v-for="(item,key,index) in dataObject">{{item.title}}</li>
+			</ul>
+			
+			<!--组件  v-for-->
+			<!--keyup.enter  输入完成后的回车事件-->
+			<input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+		    <ul>
+			    <li
+			      is="todo1-item"
+			      v-for="(todo1, index) in todo1s"
+			      v-bind:key="index"
+			      v-bind:title="todo1"
+			      v-on:remove="todo1s.splice(index, 1)"
+			    ></li>
+		  	</ul>
+		  	
+			<!--数组-->
+			<div v-for="item in todo2s">
+				<p>{{item}}</p>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			// 定义名为 todo-item 的新组件
+			Vue.component('todo-item', {
+				props: ['todo'],
+			  	template: '<li>{{ todo.text }}</li>'
+			})
+			Vue.component('todo1-item', {
+				template: '<li>{{ title }}</li>',
+				props: ['title']
+				})
+			var vm = new Vue({
+				el: '#app',
+				data: {
+				    message: 'Hello Vue.js!',
+				    message1: '新消息',
+				    seen: false,
+				    show: true,
+				    isActive:false,
+				    hasError: true,
+				    classObject:{
+				    	active: true,
+    					'text-danger': false
+				    },
+				    dataObject:'',
+				    todos: [
+					    {text: '学习 JavaScript'},
+					    {text: '学习 Vue'},
+					    {text: '整个牛项目'}
+				    ],
+				    newTodoText: '',
+				    todo1s: [
+				        'Do the dishes',
+				        'Take out the trash',
+				        'Mow the lawn'
+				    ],
+				    todo2s: [
+				        '早上',
+				        '中午',
+				        '下午'
+				    ],
+				    groceryList:[
+				    	{ id: 0, text: '蔬菜' },
+					    { id: 1, text: '奶酪' },
+					    { id: 2, text: '随便其他什么人吃的东西' }
+				    ],
+				    firstName: 'Foo',
+				    lastName: 'Bar',
+				    /*fullName: 'Foo Bar',
+				    fullName1: 'Foo Bar1'*/
+				    question: '',
+    				answer: 'I cannot give you an answer until you ask a question!'
+				},
+				created: function () {
+					var that = this;
+				    axios.get('json/selectMyMasterCourseById.json')
+			            .then(function (response) {
+			             	var coursePosts = response.data.body.coursePosts;
+			             	//console.log(that);
+			             	//使用vm 和  that指向vue，然后设置vue里面的data
+			             	
+			             	/*vm.dataObject = coursePosts;
+			             	vm.message1 = coursePosts.title;*/
+			             	
+			             	that.dataObject = coursePosts;
+			             	that.message1 = coursePosts.title;
+			            })
+			            .catch(function (error) {
+			            	vm.answer = 'Error! Could not reach the API. ' + error;
+			            })
+			            //在数组末尾添加元素
+			            //that.todo2s.push("晚上");
+			            //在数组末尾删除元素
+			            //that.todo2s.pop();
+			            //在数组前面删除元素
+			            //that.todo2s.unshift("晚上");
+			            //在数组前面删除元素
+			            //that.todo2s.shift();
+			            //数组分割(此方法没有验证成功)
+			            //that.todo2s.splice(",");
+			            //数组排序（和下面的reverse效果一样）
+			            //that.todo2s.sort();
+			            //数组倒序
+			            that.todo2s.reverse();
+				},
+				computed: {
+				    // a computed getter
+				    reversedMessage: function () {
+				      // `this` points to the vm instance
+				      return this.message.split('').reverse().join('')
+				    },
+				    now: function () {
+					    return Date.now()
+					},
+					fullName: function () {
+				      	return this.firstName + ' ' + this.lastName
+				    },
+				    fullName1: {
+					    // getter
+					    get: function () {
+					      return this.firstName + ' ' + this.lastName
+					    },
+					    // setter
+					    set: function (newValue) {
+					      var names = newValue.split(' ');
+					      this.firstName = names[0];
+					      this.lastName = names[names.length - 1];
+					    }
+					}
+				},
+				watch: {
+				    // 如果 question 发生改变，这个函数就会运行
+				    question: function (newQuestion) {
+				      this.answer = 'Waiting for you to stop typing...'
+				      this.getAnswer()
+				    }
+				},
+				methods: {
+				    reverseMessage: function() {
+				      this.message1 = this.message1.split('').reverse().join('')
+				    },
+				    reverse: function() {
+				       return this.message.split('').reverse().join('')
+				    },
+				    addNewTodo: function () {
+				       this.todo1s.push(this.newTodoText)
+				       this.newTodoText = ''
+				    },
+				    // _.debounce 是一个通过 lodash 限制操作频率的函数。在这个例子中，我们希望限制访问yesno.wtf/api的频率
+				    // ajax请求直到用户输入完毕才会发出。学习更多关于 _.debounce function (and its cousin _.throttle), 
+				    //参考: https://lodash.com/docs#debounce
+				    //_.capitalize()函数返回一个首字母大写的字符串
+				    getAnswer: _.debounce(
+				      	function () {
+					        if (this.question.indexOf('?') === -1) {
+					          this.answer = 'Questions usually contain a question mark. ;-)'
+					          return
+					        }
+					        this.answer = 'Thinking...'
+					        var vm = this
+					        axios.get('https://yesno.wtf/api')
+					          .then(function (response) {
+					            vm.answer =  _.capitalize(response.data.answer)
+					          })
+					          .catch(function (error) {
+					            vm.answer = 'Error! Could not reach the API. ' + error
+					          })
+				        },
+				      // 这是我们为用户停止输入等待的毫秒数
+				      500
+    				)
+				}
+			})
+			vm.fullName1 = 'John Doe';
+			console.log(vm.firstName);
+			console.log(vm.lastName);
+			window.onload = function() {
+				console.log(1)
+			}
+		</script>
+	</body>
+</html>

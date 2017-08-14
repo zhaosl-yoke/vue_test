@@ -1,0 +1,29 @@
+{
+    "success": true,
+    "msg": null,
+    "token": null,
+    "target": null,
+    "versionCode": null,
+    "body": {
+        "weixinUsers": [],
+        "masterCourse": {
+            "id": 7,
+            "userId": 30302,
+            "majorCode": "01032",
+            "title": "《零基础作曲及如何听懂莫扎特》",
+            "filepath": "master_course/0d9ae45d-254c-419c-b085-5dfbf34d82b0.png",
+            "courseNum": 4,
+            "amount": 1,
+            "updateDesc": "共4期",
+            "isHead": 1,
+            "inuse": 1,
+            "delFlag": "0",
+            "desc1": "有时候我们不知道旋律来自于哪里，但还是哼起来了。我们哼唱的旋律是来自于我们的头脑中吗？",
+            "updateTime": 1498823067000,
+            "createTime": 1498545469000,
+            "viewCount": 70,
+            "onlineNum": 3,
+            "masterCoursePosts": null
+        }
+    }
+}

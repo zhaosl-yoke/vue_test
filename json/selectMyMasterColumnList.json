@@ -1,0 +1,26 @@
+{
+    "success": true,
+    "msg": null,
+    "token": null,
+    "target": null,
+    "versionCode": null,
+    "body": {
+        "myColumnList": [
+            {
+                "id": 1,
+                "userId": 413,
+                "title": "《零基础作曲及如何听懂莫扎特》",
+                "desc1": "Thomas Simaku（1958- ）教授是一位屡获殊荣的作曲家，英国约克大学博士（1996），师从David Blake。 Simaku是美国Tanglewood音乐中心（1996）的Bernard Rands作曲学者，以及加利福尼亚州立大学（1998年）作曲家研讨会的研究员。Thomas Simaku目前是英国约克大学作曲教授。",
+                "updateDesc": "每周更新",
+                "amount": 0,
+                "hits": 231,
+                "catalog": "master_column",
+                "filename": "3698601e-44d2-454b-83a7-b0754f2e6e72",
+                "extension": "png",
+                "thumb": "master_column/50b43494-899c-43d6-8b83-ad432372e468.png",
+                "delFlag": "0",
+                "createTime": 1498533834000
+            }
+        ]
+    }
+}
